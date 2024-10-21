@@ -105,4 +105,7 @@ This code creates a simple FastAPI application that reads an environment variabl
 
 <h2>Step 2: Create the Azure Container Registry (ACR)</h2>
 
-- In Azure dashboard go to **Search > Container Registrty >** Create.
+- In Azure dashboard go to **Search > Container Registry > Create.**
+
+![](/Images/search-ACR.png)
+![](/Images/create-ACR.png)
