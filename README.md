@@ -22,7 +22,7 @@
   
 - **Create a main.py file: Inside the project directory, create a file named main.py:**
 
-      touch main.py
+      vim main.py
   
 - **Add the following code to main.py:**
 
@@ -39,7 +39,7 @@ This code creates a simple FastAPI application that reads an environment variabl
 
 - **Create a .env file: Create a .env file to store environment variables:**
 
-      touch .env
+      vim .env
   
 - **Add the following content to the .env file:**
 
@@ -47,7 +47,7 @@ This code creates a simple FastAPI application that reads an environment variabl
 
 - **Create a requirements.txt file: To make sure all dependencies are easily managed, create a requirements.txt file:**
 
-      touch requirements.txt
+      vim requirements.txt
   
 - **Add the installed dependencies to this file:**
 
@@ -56,5 +56,48 @@ This code creates a simple FastAPI application that reads an environment variabl
       python-dotenv  # Needed to load environment variables from .env
 
 **Congrats! 🎉 Your FastAPI application has been successfully developed.**
+**Next, we can proceed with containerizing the application using Docker.**
 
+- **Create a docker directory inside your fastapi-sample directory:**
 
+      mkdir docker
+      cd docker
+
+- **Create a Dockerfile:**
+
+      vim Dockerfile
+
+- **Add the following code in Dockerfile**
+
+      FROM python:3.11.2
+
+      WORKDIR /app
+
+      RUN apt-get update && apt-get install -y \
+          locales \
+          locales-all
+
+      COPY ./requirements.txt /app/requirements.txt
+
+      RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
+
+      COPY . /app/
+      COPY .env /app/
+      COPY ./docker /app/docker
+
+      ENV TZ=Asia/Kolkata
+      RUN chmod +x /app/docker/run.sh
+
+      EXPOSE 8000
+
+      ENTRYPOINT ["/app/docker/run.sh"]
+
+- **Create a run.sh file that will help to run the FastAPI server on start of new container:**
+
+      vim run.sh
+
+- **Add the following code in run.sh**
+
+      #!/bin/sh
+      cd /app/
+      uvicorn app:app --host 0.0.0.0
