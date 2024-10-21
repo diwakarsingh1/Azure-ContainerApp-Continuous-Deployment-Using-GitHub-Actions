@@ -7,11 +7,15 @@
 <h3>Prerequisites</h3>
 <h3>To set up the continuous deployment pipeline for your FastAPI application using GitHub Actions, you will need the following:</h3>
 
-- **Azure Account:** 
-- **Azure Container Registry (ACR):** 
-- **Azure Container App:** 
-- **Azure App Registration:** 
-- **GitHub:**
+- **Azure Account** 
+- **Azure Container Registry (ACR)** 
+- **Azure Container App** 
+- **Azure App Registration** 
+- **GitHub**
+- **Docker**
+- 
+> [!IMPORTANT]
+> Step 1 to Step 4 is the manual setup. Automatic deployment will start from the Step 5.
 
 <h2>Step 1: Create a Sample FastAPI Project with .env and requirements.txt</h2>
 
@@ -108,6 +112,9 @@ This code creates a simple FastAPI application that reads an environment variabl
 - In Azure dashboard navigate to **Search > Container Registry > Create.**
 
 ![](/Images/search-ACR.png)
+
+Enter the name of your Azure Container Registry.
+
 ![](/Images/create-ACR.png)
 
 - **Let's have a overview of Azure Container Registry.**
@@ -164,4 +171,6 @@ This code creates a simple FastAPI application that reads an environment variabl
 - Allow external traffic.
 - Select Ingress type as HTTP.
 - Mention the target port on which the application will run inside the container (let say 8000 for FastAPI).
+- Click create.
 
+**Congrats! 🎉 You have successfully created the Azure Container App taking the image source as Azure Container Registry (ACR).**
