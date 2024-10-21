@@ -19,9 +19,11 @@
   
       mkdir fastapi-sample
       cd fastapi-sample
+  
 - **Create a main.py file: Inside the project directory, create a file named main.py:**
 
       touch main.py
+  
 - **Add the following code to main.py:**
 
       from fastapi import FastAPI
@@ -34,4 +36,25 @@
           return {"message": "Welcome to FastAPI", "environment": os.getenv("ENVIRONMENT", "development")}
 
 This code creates a simple FastAPI application that reads an environment variable (ENVIRONMENT) from a .env file.
+
+- **Create a .env file: Create a .env file to store environment variables:**
+
+      touch .env
+  
+- **Add the following content to the .env file:**
+
+      ENVIRONMENT=production
+
+- **Create a requirements.txt file: To make sure all dependencies are easily managed, create a requirements.txt file:**
+
+      touch requirements.txt
+  
+- **Add the installed dependencies to this file:**
+
+      fastapi
+      uvicorn
+      python-dotenv  # Needed to load environment variables from .env
+
+**Congrats! 🎉 Your FastAPI application has been successfully developed.**
+
 
