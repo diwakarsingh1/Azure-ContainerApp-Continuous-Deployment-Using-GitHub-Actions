@@ -154,7 +154,7 @@ This code creates a simple FastAPI application that reads an environment variabl
 > [!NOTE]
 > Create the Azure Container App within the same resource group, region and subscription as the Azure Container Registry (ACR).
 
-- **In the Azure Portal, go to _Search > Container App > Create_.**
+- **In the Azure Portal, navigate to _Search > Container App > Create_.**
 - **Select the appropriate Subscription.**
 - **Choose the same Resource Group as your ACR.**
 - **Specify a unique name for your Container App.**
@@ -179,5 +179,22 @@ This code creates a simple FastAPI application that reads an environment variabl
 
 <h2>Step 5: Create the Azure App Registration</h2>
 
+- In Azure dashboard navigate to **Search > App Registration > Create.**
+![](/Images/portal-02-app-reg-01.png)
+- **Enter the name of your App registration.**
+- **Click Register.**
+![](/Images/portal-03-app-reg-02.png)
+- **Note the Client-ID and Tenanat-ID**
+- **Click on Certifications and Secrets.**
+- **Click on Federated Credentials and click on add credentials.**
+![](/Images/portal-05-app-reg-04-credentials.png)
+- **Select the GitHub action deploying azure resource in Federated credentials scenario.**
+- **Enter GitHub organisation name.**
+- **Enter the name of the repo.**
+- **Select entity type as branch**
+- **Subjent identifier as "main" i.e., your branch name.**
+- **Enter the name of that credential.**
+- **Click Add.**
 
+**Congratulations! 🎉 You have successfully created the Azure App Registration for GitHub Action continous deployment.**
 
