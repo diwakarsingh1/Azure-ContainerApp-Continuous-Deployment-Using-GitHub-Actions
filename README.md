@@ -5,7 +5,6 @@ Here is a simple flow chart:
 
 ```mermaid
 graph TD;
-    graph TD;
     Developer-->GitHub;
     GitHub-->Runs_GitHub_Workflow_File;
     Runs_GitHub_Workflow_File-->Azure_Login;
