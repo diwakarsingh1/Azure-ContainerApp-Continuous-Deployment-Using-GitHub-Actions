@@ -129,17 +129,39 @@ This code creates a simple FastAPI application that reads an environment variabl
 - **Inside the fastapi-sample run the below docker command to build the image:**
 
       docker build -t mycontainerregistry.azurecr.io/hello-world:latest -f docker/Dockerfile .
-  
+
+> [!NOTE]
+> Be sure to include the ACR server name in your Docker image, as demonstrated above.
+
 - **Now push the Image to your Azure Container Registry (ACR):**
 
-      docker push myregistry.azurecr.io/hello-world:latest
+      docker push mycontainerregistry.azurecr.io/hello-world:latest
 
 ![](/Images/repo-ACR.png)
 
 **Congrats! 🎉 You have successfully pushed the image to your Azure Container Registry (ACR).**
 
 
-<h2>Step 3: Create the Azure Container Registry (ACR)</h2>
+<h2>Step 4: Create the Azure Container App</h2>
 
 > [!NOTE]
-> Useful information that users should know, even when skimming content.
+> Create the Azure Container App within the same resource group, region and subscription as the Azure Container Registry (ACR).
+
+- In Azure dashboard navigate to **Search > Container App > Create.**
+- Choose the Subscription.
+- Choose the resource group.
+- Enter the name of your Container App.
+- Choose Deployment source as **container image**.
+- Choose region.
+- Click next.
+- Enter Container name.
+- Select image source as ACR.
+- Select subscription.
+- Select registry that you have created.
+- Select image for which you want to deploy the container app with its respective tag.
+- Click next.
+- Enable the ingress.
+- Allow external traffic.
+- Select Ingress type as HTTP.
+- Mention the target port on which the application will run inside the container (let say 8000 for FastAPI).
+
