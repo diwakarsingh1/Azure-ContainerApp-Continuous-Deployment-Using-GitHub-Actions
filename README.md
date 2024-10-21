@@ -13,7 +13,7 @@
 - **Azure App Registration** 
 - **GitHub**
 - **Docker**
-- 
+
 > [!IMPORTANT]
 > Step 1 to Step 4 is the manual setup. Automatic deployment will start from the Step 5.
 
@@ -113,7 +113,7 @@ This code creates a simple FastAPI application that reads an environment variabl
 
 ![](/Images/search-ACR.png)
 
-Enter the name of your Azure Container Registry.
+- Enter the name of your Azure Container Registry.
 
 ![](/Images/create-ACR.png)
 
@@ -174,3 +174,7 @@ Enter the name of your Azure Container Registry.
 - Click create.
 
 **Congrats! 🎉 You have successfully created the Azure Container App taking the image source as Azure Container Registry (ACR).**
+
+<h1>Automatic Deployment setup starts here.</h1>
+
+
