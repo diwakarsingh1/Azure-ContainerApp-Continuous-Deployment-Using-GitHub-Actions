@@ -5,9 +5,10 @@ Here is a simple flow chart:
 
 ```mermaid
 graph TD;
+    graph TD;
     Developer-->GitHub;
-    GitHub-->'Runs GitHub Workflow File';
-    'Runs GitHub Workflow File'-->'Azure Login';
-    'Azure Login'-->'Image get pushed in Azure Container Registry';
-    'Image get pushed in Azure Container Registry'-->'Updated deployment in Container App'
+    GitHub-->Runs_GitHub_Workflow_File;
+    Runs_GitHub_Workflow_File-->Azure_Login;
+    Azure_Login-->Image_pushed_to_ACR;
+    Image_pushed_to_ACR-->Update_Container_App_Deployment;
 ```
