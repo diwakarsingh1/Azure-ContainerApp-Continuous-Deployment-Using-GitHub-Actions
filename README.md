@@ -101,3 +101,8 @@ This code creates a simple FastAPI application that reads an environment variabl
       #!/bin/sh
       cd /app/
       uvicorn app:app --host 0.0.0.0
+**Congrats! 🎉 You have successfully containerized your FastAPI application.**
+
+<h2>Step 2: Create the Azure Container Registry (ACR)</h2>
+
+- In Azure dashboard go to **Search > Container Registrty >** Create.
