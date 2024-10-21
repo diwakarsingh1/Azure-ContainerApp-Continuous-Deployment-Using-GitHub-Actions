@@ -14,6 +14,7 @@
 - **GitHub:**
 
 <h2>Step 1: Create a Sample FastAPI Project with .env and requirements.txt</h2>
+
 - **Create a project directory: First, create a new directory for your FastAPI project:**
       mkdir fastapi-sample
       cd fastapi-sample
