@@ -113,14 +113,14 @@ This code creates a simple FastAPI application that reads an environment variabl
 
 ![](/Images/search-ACR.png)
 
-- Enter the name of your Azure Container Registry.
+- **Enter the name of your Azure Container Registry:**
 
 ![](/Images/create-ACR.png)
 
-- **Let's have a overview of Azure Container Registry.**
+- **Let's have a overview of Azure Container Registry:**
 
 ![](/Images/overview-ACR.png)
-- This is the login server name by which you can login to your ACR.
+- **This is the login server name by which you can login to your ACR:**
 
 **Congrats! 🎉 You have successfully created your Azure Container Registry (ACR).**
 
@@ -146,7 +146,7 @@ This code creates a simple FastAPI application that reads an environment variabl
 
 ![](/Images/repo-ACR.png)
 
-**Congrats! 🎉 You have successfully pushed the image to your Azure Container Registry (ACR).**
+**Congratulations! 🎉 You have successfully pushed the image to your Azure Container Registry (ACR).**
 
 
 <h2>Step 4: Create the Azure Container App</h2>
@@ -154,27 +154,30 @@ This code creates a simple FastAPI application that reads an environment variabl
 > [!NOTE]
 > Create the Azure Container App within the same resource group, region and subscription as the Azure Container Registry (ACR).
 
-- In Azure dashboard navigate to **Search > Container App > Create.**
-- Choose the Subscription.
-- Choose the resource group.
-- Enter the name of your Container App.
-- Choose Deployment source as **container image**.
-- Choose region.
-- Click next.
-- Enter Container name.
-- Select image source as ACR.
-- Select subscription.
-- Select registry that you have created.
-- Select image for which you want to deploy the container app with its respective tag.
-- Click next.
-- Enable the ingress.
-- Allow external traffic.
-- Select Ingress type as HTTP.
-- Mention the target port on which the application will run inside the container (let say 8000 for FastAPI).
-- Click create.
+- **In the Azure Portal, go to _Search > Container App > Create_.**
+- **Select the appropriate Subscription.**
+- **Choose the same Resource Group as your ACR.**
+- **Specify a unique name for your Container App.**
+- **Set the Deployment Source to _Container Image_.**
+- **Select the Azure region where the app will be deployed.**
+- **Proceed to the next step by clicking _Next_.**
+- **Provide a name for the Container within the app.**
+- **Set the Image Source to Azure Container Registry (ACR).**
+- **Ensure the Subscription matches the one used for ACR.**
+- **Select the ACR instance you created earlier.**
+- **Specify the Docker image and its corresponding tag that you wish to deploy.**
+- **Click _Next_ to continue.**
+- **Enable Ingress traffic.**
+- **Allow external traffic access.**
+- **Choose the Ingress type as HTTP.**
+- **Set the Target Port to 8000 (for FastAPI) or any port on which the application is running inside the container.**
+- **Click _Create_ to finalize the deployment.**
 
-**Congrats! 🎉 You have successfully created the Azure Container App taking the image source as Azure Container Registry (ACR).**
+**Congratulations! 🎉 You have successfully created the Azure Container App using Azure Container Registry (ACR) as the image source.**
 
 <h1>Automatic Deployment setup starts here.</h1>
+
+<h2>Step 5: Create the Azure App Registration</h2>
+
 
 
