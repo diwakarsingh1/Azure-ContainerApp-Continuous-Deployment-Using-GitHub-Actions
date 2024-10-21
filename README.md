@@ -16,6 +16,22 @@
 <h2>Step 1: Create a Sample FastAPI Project with .env and requirements.txt</h2>
 
 - **Create a project directory: First, create a new directory for your FastAPI project:**
+  
       mkdir fastapi-sample
       cd fastapi-sample
+- **Create a main.py file: Inside the project directory, create a file named main.py:**
+
+      touch main.py
+- **Add the following code to main.py:**
+
+      from fastapi import FastAPI
+      import os
+
+      app = FastAPI()
+
+      @app.get("/")
+      def read_root():
+          return {"message": "Welcome to FastAPI", "environment": os.getenv("ENVIRONMENT", "development")}
+
+This code creates a simple FastAPI application that reads an environment variable (ENVIRONMENT) from a .env file.
 
