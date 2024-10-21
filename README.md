@@ -7,8 +7,14 @@
 <h3>Prerequisites</h3>
 <h3>To set up the continuous deployment pipeline for your FastAPI application using GitHub Actions, you will need the following:</h3>
 
-- **Azure Account:** A valid Azure account with sufficient permissions to manage resources.
-- **Azure Container Registry (ACR):** To store and manage your Docker images. You need to create and configure an ACR instance.
-- **Azure Container App:** A running Azure Container App to host your deployed FastAPI application.
-- **Azure App Registration:** Register your application in Azure Active Directory (Azure AD) to enable authentication for the GitHub Actions workflow.
-- **GitHub:** A GitHub repository where your FastAPI code is hosted and where the GitHub Actions workflow will be configured.
+- **Azure Account:** 
+- **Azure Container Registry (ACR):** 
+- **Azure Container App:** 
+- **Azure App Registration:** 
+- **GitHub:**
+
+<h2>Step 1: Create a Sample FastAPI Project with .env and requirements.txt</h2>
+- **Create a project directory: First, create a new directory for your FastAPI project:**
+      mkdir fastapi-sample
+      cd fastapi-sample
+
