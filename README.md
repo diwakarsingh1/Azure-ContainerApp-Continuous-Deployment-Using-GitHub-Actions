@@ -6,8 +6,8 @@ Here is a simple flow chart:
 ```mermaid
 graph TD;
     Developer-->GitHub;
-    GitHub-->Runs GitHub Workflow File;
-    Runs GitHub Workflow File-->Azure Login;
-    Azure Login-->Image get pushed in Azure Container Registry;
-    Image get pushed in Azure Container Registry-->Updated deployment in Container App
+    GitHub-->'Runs GitHub Workflow File';
+    'Runs GitHub Workflow File'-->'Azure Login';
+    'Azure Login'-->'Image get pushed in Azure Container Registry';
+    'Image get pushed in Azure Container Registry'-->'Updated deployment in Container App'
 ```
