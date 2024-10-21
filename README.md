@@ -198,3 +198,69 @@ This code creates a simple FastAPI application that reads an environment variabl
 
 **Congratulations! 🎉 You have successfully created the Azure App Registration for GitHub Action continous deployment.**
 
+<h2>Step 6: Provide the role of contributor that you have just created in App registration.</h2>
+
+- **Click on the subscription on the Azure dashboard.**
+- **Click the subscription in which you have done all your setup, like your ACR, Azure Container App.**
+- **Click on Access Control (IAM)**
+- **Click on Add and again click on Add Role Assignment.**
+- **Select as administrator roles.**
+- **Enter the member and search for the name that you just created in App Registration.**
+- **Click on assign.**
+
+**Congratulations! 🎉 You have successfully assigned the contributor role to the Azure App Registration for GitHub Action continous deployment.**
+
+<h2>Create the GitHub Action in the in which you want to implement the automatic deployment.</h2>
+
+- **Click on Action and setup a workflow yourself.**
+- **Paste the below YAML file.**
+  
+      name: Deploy FastAPI to Azure
+
+      on:
+        push:
+          branches:
+            - main  # Change to the branch you want to track
+
+      permissions:
+        id-token: write
+        contents: read
+
+  
+      jobs:
+        build-and-deploy:
+          runs-on: ubuntu-latest
+
+          steps:
+            - name: Checkout
+              uses: actions/checkout@v3 
+        
+            - name: Azure login
+              uses: azure/login@v2
+              with:
+                client-id: ${{ secrets.AZURE_CLIENT_ID }}
+                tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+                subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+            - name: Azure CLI script
+              uses: azure/cli@v2
+              with:
+                azcliversion: latest
+                inlineScript: |
+                  az account show
+
+            - name: Build and Push Docker Image to ACR
+              run: |
+                IMAGE_NAME=${{ secrets.ACR_LOGIN_SERVER }}/fastapi:latest
+                cd ${{ github.workspace }}
+                docker build -t $IMAGE_NAME -f docker/Dockerfile .
+                echo ${{ secrets.ACR_PASSWORD }} | docker login ${{ secrets.ACR_LOGIN_SERVER }} -u ${{ secrets.ACR_USERNAME }} --password-stdin
+                docker push $IMAGE_NAME
+
+            - name: Deploy to Azure Container App
+              run: |
+                az containerapp update \
+                  --name test \
+                  --resource-group vocalyst-sweden \
+                  --image ${{ secrets.ACR_LOGIN_SERVER }}/fastapi:latest
+
