@@ -67,7 +67,7 @@ This code creates a simple FastAPI application that reads an environment variabl
 
       vim Dockerfile
 
-- **Add the following code in Dockerfile**
+- **Add the following code in Dockerfile:**
 
       FROM python:3.11.2
 
@@ -96,7 +96,7 @@ This code creates a simple FastAPI application that reads an environment variabl
 
       vim run.sh
 
-- **Add the following code in run.sh**
+- **Add the following code in run.sh:**
 
       #!/bin/sh
       cd /app/
@@ -105,7 +105,41 @@ This code creates a simple FastAPI application that reads an environment variabl
 
 <h2>Step 2: Create the Azure Container Registry (ACR)</h2>
 
-- In Azure dashboard go to **Search > Container Registry > Create.**
+- In Azure dashboard navigate to **Search > Container Registry > Create.**
 
 ![](/Images/search-ACR.png)
 ![](/Images/create-ACR.png)
+
+- **Let's have a overview of Azure Container Registry.**
+
+![](/Images/overview-ACR.png)
+- This is the login server name by which you can login to your ACR.
+
+**Congrats! 🎉 You have successfully created your Azure Container Registry (ACR).**
+
+<h2>Step 3: Login and push the image to the ACR.</h2>
+
+- **Login to the ACR using the command below:**
+
+      docker login mycontainerregistry.azurecr.io
+  
+- **You will prompted to enter username and password to login:**
+- **Navigate to the Access key tab in your registry dashboard:**
+- **You will find the login username and password, enter the username and password:**
+- **Inside the fastapi-sample run the below docker command to build the image:**
+
+      docker build -t mycontainerregistry.azurecr.io/hello-world:latest -f docker/Dockerfile .
+  
+- **Now push the Image to your Azure Container Registry (ACR):**
+
+      docker push myregistry.azurecr.io/hello-world:latest
+
+![](/Images/repo-ACR.png)
+
+**Congrats! 🎉 You have successfully pushed the image to your Azure Container Registry (ACR).**
+
+
+<h2>Step 3: Create the Azure Container Registry (ACR)</h2>
+
+> [!NOTE]
+> Useful information that users should know, even when skimming content.
