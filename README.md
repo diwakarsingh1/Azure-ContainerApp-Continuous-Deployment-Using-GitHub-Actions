@@ -233,7 +233,8 @@ This code creates a simple FastAPI application that reads an environment variabl
 
           steps:
             - name: Checkout   # To checkout the code
-              uses: actions/checkout@v3 
+              uses: actions/checkout@v3
+            
         
             - name: Azure login
               uses: azure/login@v2
@@ -264,3 +265,88 @@ This code creates a simple FastAPI application that reads an environment variabl
                   --resource-group vocalyst-sweden \
                   --image ${{ secrets.ACR_LOGIN_SERVER }}/fastapi:latest
 
+**We are using the approach of OIDC Connect to Login into our Azure account.**
+
+<h3>What is OIDC connect?</h3>
+
+-****OIDC (OpenID Connect)** allows GitHub Actions to securely authenticate with Azure without storing credentials. Instead of using service principals or secrets, GitHub provides an OIDC token during the workflow run, which is exchanged for an Azure access token via Azure AD. You configure a **Federated Identity Credential** in Azure to trust GitHub's OIDC token. This token allows short-lived access to Azure resources, improving security and removing the need for managing long-term credentials in GitHub secrets.**
+
+**To get the value _ACR_LOGIN_SERVER_, _ACR_PASSWORD_, & _ACR_USERNAME_ navigate to-**
+-**Search > Azure Container Registry > Click on the ACR that you just created.**
+![](/Images/overview-ACR.png)
+
+-**Click on Access Key and find the Login Server, Password, Username.**
+
+**Congratulations! 🎉 You have successfully created the workflow file for Continuous deployment.**
+
+<h2>Step 6: Create the Secrets in the repo.</h2>
+
+-**Navigate to the settings > Secrets and Variables > Actions > Secrets.**
+![](Images/secrets.png)
+-**Click on New Repository Secrets And Enter the Varibale name and its value and then add secrets.**
+
+-**As you also created the .env file and its not the good practise to put the .env file in the repo. So we will use the same concept of secrets to add the value of .env variables and its value.**
+-**In .env there is only variable i.e., ENVIRONMENT=production to add this clcik to add secrets.**
+-**Enter the name of the Variable and its value.**
+-**And then Add secrets.**
+
+**How to use .env in the workflow file.**
+-**Here is the updated workflow file.**
+
+      name: Deploy FastAPI to Azure   #name of your github action
+
+      on:
+        push:
+          branches:
+            - main  # Change to the branch you want to track
+
+      permissions:
+        id-token: write   # Allow this job to create the OIDC token
+        contents: read    # Read the content of the repo
+
+  
+      jobs:
+        build-and-deploy:  # Name of your job
+          runs-on: ubuntu-latest    # Operating System to rnu the Job. It is also known as GitHub Runner
+
+          steps:
+            - name: Checkout   # To checkout the code
+              uses: actions/checkout@v3
+
+            - name: Creating .env file
+              run: |
+                touch .env
+                echo "ENVIRONMENT=${{ secrets.ENVIRONMENT }}" >> .env
+        
+            - name: Azure login
+              uses: azure/login@v2
+              with:
+                client-id: ${{ secrets.AZURE_CLIENT_ID }}
+                tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+                subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+            - name: Azure CLI script
+              uses: azure/cli@v2
+              with:
+                azcliversion: latest
+                inlineScript: |
+                  az account show
+
+            - name: Build and Push Docker Image to ACR
+              run: |
+                IMAGE_NAME=${{ secrets.ACR_LOGIN_SERVER }}/fastapi:latest
+                cd ${{ github.workspace }}
+                docker build -t $IMAGE_NAME -f docker/Dockerfile .
+                echo ${{ secrets.ACR_PASSWORD }} | docker login ${{ secrets.ACR_LOGIN_SERVER }} -u ${{ secrets.ACR_USERNAME }} --password-stdin
+                docker push $IMAGE_NAME
+
+            - name: Deploy to Azure Container App
+              run: |
+                az containerapp update \
+                  --name test \
+                  --resource-group vocalyst-sweden \
+                  --image ${{ secrets.ACR_LOGIN_SERVER }}/fastapi:latest
+
+**With this way yo can use the environmental variables of your project i.e., .env file.**
+
+<h1>Voila!💥 Your Azure ContainerApp continuous deployment ssing GitHub actions is ready.</h1>
