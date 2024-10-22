@@ -212,10 +212,10 @@ This code creates a simple FastAPI application that reads an environment variabl
 
 <h2>Create the GitHub Action in the in which you want to implement the automatic deployment.</h2>
 
-- **Click on Action and setup a workflow yourself.**
+- **Click on Action and then click on setup a workflow yourself.**
 - **Paste the below YAML file.**
   
-      name: Deploy FastAPI to Azure
+      name: Deploy FastAPI to Azure   #name of your github action
 
       on:
         push:
@@ -223,16 +223,16 @@ This code creates a simple FastAPI application that reads an environment variabl
             - main  # Change to the branch you want to track
 
       permissions:
-        id-token: write
-        contents: read
+        id-token: write   # Allow this job to create the OIDC token
+        contents: read    # Read the content of the repo
 
   
       jobs:
-        build-and-deploy:
-          runs-on: ubuntu-latest
+        build-and-deploy:  # Name of your job
+          runs-on: ubuntu-latest    # Operating System to rnu the Job. It is also known as GitHub Runner
 
           steps:
-            - name: Checkout
+            - name: Checkout   # To checkout the code
               uses: actions/checkout@v3 
         
             - name: Azure login
