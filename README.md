@@ -349,4 +349,4 @@ This code creates a simple FastAPI application that reads an environment variabl
 
 **With this way yo can use the environmental variables of your project i.e., .env file.**
 
-<h1>Voila!💥 Your Azure ContainerApp continuous deployment ssing GitHub actions is ready.</h1>
+<h1>Voila!💥 Your Azure ContainerApp continuous deployment using GitHub actions is ready.</h1>
