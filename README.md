@@ -347,6 +347,6 @@ This code creates a simple FastAPI application that reads an environment variabl
                   --resource-group vocalyst-sweden \
                   --image ${{ secrets.ACR_LOGIN_SERVER }}/fastapi:latest
 
-**With this way yo can use the environmental variables of your project i.e., .env file.**
+**With this way you can use the environmental variables of your project i.e., .env file.**
 
 <h1>Voila!💥 Your Azure ContainerApp continuous deployment using GitHub actions is ready.</h1>
